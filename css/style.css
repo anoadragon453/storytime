@@ -1,58 +1,112 @@
-html {height: 100%; width: 100%; overflow:hidden;}
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
 
-body { 
-	
-	background: #01A654;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	height: 100%;
-	overflow: hidden;
-  	width: 100%;
-  	margin: 0px;
-  	
- }
+body {
+    background: #01A654;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
+    margin: 0px;
+}
 
-h1 { display: inline; text-align: center; font-family: 'Lato', serif; font-weight: 300; font-size: 40px;  color: #eee; padding: 3px; margin: 0px;}
+h1 {
+    display: inline;
+    text-align: center;
+    font-family: 'Lato', serif;
+    font-weight: 300;
+    font-size: 40px;
+    color: #eee;
+    padding: 3px;
+    margin: 0px;
+}
 
-p {text-align: justify; font-family: 'Lato', serif; font-weight: 300; font-size: 18px;  color: #eee; padding: 3px; margin: 0px;}
+p {
+    text-align: justify;
+    font-family: 'Lato', serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: #eee;
+    padding: 3px;
+    margin: 0px;
+    height:80%;
+}
 
-.title {width: 600px; margin: auto; margin-bottom: 50px; margin-top: 100px;}
 
-.text{width: 1000px; margin: auto; margin-bottom: 50px; margin-top: 50px; height: 60%; overflow: scroll; cursor: default;}
+.maintext
+{
+    height: 80%;
+    overflow: scroll;
+}
+/*
+.title {
+    width: 600px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 100px;
+}*/
+/*
+.text {
+    width: 1000px;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    height: 60%;
+    overflow: scroll;
+    cursor: default;
+}*/
 
-::-webkit-scrollbar { 
-    display: none; 
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 30px;
+}
+
+.rvlogo {
+    display: none;
+    width: 300px;
+    vertical-align: top;
+    font-family: Arial;
+    font-size: 9pt;
+    line-height: normal
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
 
 input[type="text"] {
-margin: 0px;
-display: inline;
-  padding: 10px;
-  border: none;
-  /*border-bottom: solid 2px #eee;*/
-  background: #01A654;
-  transition: border 0.3s;
-  outline: none;
-
-  font-size:40px;
-  font: 'Lato';
-  font-weight: 100;
-  color: #eee;
-  width: 200px;
-  text-overflow: visible;
-
+    margin: 0px;
+    display: inline;
+    padding: 10px;
+    border: none;
+    /*border-bottom: solid 2px #eee;*/
+    background: #01A654;
+    transition: border 0.3s;
+    outline: none;
+    font-size: 40px;
+    font: 'Lato';
+    font-weight: 100;
+    color: #eee;
+    /*width: 200px;*/
+    text-overflow: visible;
 }
 
-input[type="text"]::-webkit-input-placeholder 
-{
-	color: #fff;
-	opacity: 0.3;
-
+input[type="text"]::-webkit-input-placeholder {
+    color: #fff;
+    opacity: 0.3;
 }
 
 
+/*30, 206, 153*/
 
- /*30, 206, 153*/
- /*1, 166, 84*/
+
+/*1, 166, 84*/

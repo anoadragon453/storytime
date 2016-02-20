@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>StoryTime</title>
-	
-	<link rel="stylesheet" href="css/style.css">
-	<link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,100italic,100,400italic|EB+Garamond|Libre+Baskerville' rel='stylesheet' type='text/css'>
-	
-	<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
-	<script src="js/responsivevoice.js"></script>
-	<script src="js/script.js"></script>
-
+    <title>StoryTime</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,100italic,100,400italic|EB+Garamond|Libre+Baskerville' rel='stylesheet' type='text/css'>
+    
+    
 </head>
+
 <body onload="init()">
-<script>
-//console.log(profile.systemvoice);
-responsiveVoice.speak("hello world");
-//setTimeout(responsiveVoice.speak("Welcome to the Responsive Voice website", "US English Male"),15000);
-</script>
-
-	<div class="title">
-		<h1>Tell me about</h1>
-		<input type="text" placeholder="Hack Illinois" id="topic">
-	</div>
-
-
-	<div class="text">
-		<p id="text"></p>
-	</div>
-
+    <div class="container-fluid" style="height:100%">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h1>Tell me about</h1>
+            	<input type="text" placeholder="Hack Illinois" id="topic">
+            </div>
+        </div>
+        <div class="row" style="height:100%">
+        	<div class="col-md-8 col-md-offset-2 maintext">
+        		<p id="text"></p>
+        	</div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="rvlogo">
+            <a rel="license" href="//responsivevoice.org/"><img title="ResponsiveVoice Text To Speech" src="http://responsivevoice.org/wp-content/uploads/2014/08/120x31.png" style="float:left;padding-right:2px" /></a><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><a href="//responsivevoice.org/" target="_blank" title="ResponsiveVoice Text To Speech">ResponsiveVoice</a></span> used under <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" title="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License">Non-Commercial License</a>
+        </div>
+    </footer>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/responsivevoice.js"></script>
 </body>
 
 </html>
