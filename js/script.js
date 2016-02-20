@@ -2,7 +2,7 @@ $(document).ready(function(){
 	$('#topic').focus();
     $('#topic').bind('keypress', function(e) {
 		if(e.keyCode==13){
-			getstory();
+			writestory();
 		}
 	});
 });
@@ -40,12 +40,22 @@ function cycle()
 	
 }	
 
-
-function getstory()
+function writestory()
 {
-	getText(textsource, function() {
-		speak();
-	});
+	var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+        	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			text = xmlhttp.responseText;
+			console.log("Got ".concat(text));
+			document.getElementById("text").innerHTML = text;
+			speak();
+        	} else {
+			console.log("AJAX Error: ".concat(xmlhttp.status));
+
+	}
+        };
+        xmlhttp.open("GET", "./backend/php/generate.php?q=" + document.getElementById('topic').value, true);
+        xmlhttp.send();
 }
 
 function getText(url, callback)
@@ -54,7 +64,7 @@ function getText(url, callback)
 	xhttp.onreadystatechange = function() {
 	    if (xhttp.readyState == 4 && xhttp.status == 200) {
 	       text = xhttp.responseText;
-	       $("#text").html(text);
+	       //$("#text").html(text);
 
 	       callback();
 	    }

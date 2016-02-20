@@ -40,10 +40,11 @@ def writeStory():
 			text += ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",stripped(tweet)).split()) + '. '
 
 	# Write markov output to file
-	f = open('./markov_out.txt','w')
-	markovText = generateMarkov(text)
-	f.write(markovText.rsplit(' ', 1)[0])
-	f.close()
+	#f = open('./backend/markov_out.txt','w')
+	markovText = generateMarkov(text).rsplit(' ', 1)[0]
+	#f.write(markovText.rsplit(' ', 1)[0])
+	#f.close()
+	print (markovText)
 
 def main():
 	writeStory()
