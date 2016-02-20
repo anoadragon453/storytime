@@ -1,13 +1,20 @@
+$(document).ready(function(){
+    $('#topic').bind('keypress', function(e) {
+		if(e.keyCode==13){
+			getstory();
+		}
+	});
+});
+
+
+
 function init()
 {
-	$("#topic").focus();
 	cycle();
-	populate();
-	speak();
 }
 
 var placeholders = ["Shia LaBeouf", "Syria", "ViaSat", "Jeb Bush", "Ferrari", "Eastbay", "Yeezys" ,"Adidas", "Lakers", "Harper Lee", "Kesha", "Footlocker"];
-var text;
+var text = "";
 
 function cycle()
 {
@@ -28,35 +35,34 @@ function cycle()
 	}
 	
 	
-}
+}	
 
-function populate()
+
+function getstory()
 {
-	text = getText("https://amorgan.me/storytime/markov_out.txt");
-
+	getText("https://amorgan.me/storytime/markov_out.txt", function() {
+		speak();
+	});
 }
 
-
-function getText(url)
+function getText(url, callback)
 {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 	    if (xhttp.readyState == 4 && xhttp.status == 200) {
 	       text = xhttp.responseText;
 	       $("#text").html(text);
+
+	       callback();
 	    }
 	};
 	xhttp.open("GET", url, true);
 	xhttp.send();
 
-
-	//return request.responseText;
+	
 }
 
 function speak()
 {
-	responsiveVoice.speak(text);
+	responsiveVoice.speak(text, "UK English Female");
 }
-
-
-// https://amorgan.me/storytime/markov_out.txt
