@@ -1,4 +1,4 @@
-import markovify, tweepy, re, time
+import markovify, tweepy, re, time, sys
 
 def generateMarkov(text):
 	# Get raw text as string.
@@ -19,7 +19,7 @@ def generateMarkov(text):
 
 	return text
 
-def twitterfeed(textToSearch):
+def searchTweets(textToSearch):
    auth = tweepy.OAuthHandler('72USdViI5PT9VuadnGTocxwtP', 'RBpgWBnyMvsNSy5VIrpAuw1Z9v9stZXH33q0ygl747CB4BP60H')
    auth.set_access_token('2632797234-Caxa9h9PdbK9dW47njosiegOl0kPuJxSFov5vDl', 'yhcDb9R1iyR56jpeCU6nBhxylZRgaIXfRaOq0gUHqrxDT')
    api = tweepy.API(auth)
@@ -30,9 +30,8 @@ def twitterfeed(textToSearch):
 def writeStory():
 	# Get topic to search
 	text = ""
-	with open("./topic.txt") as f:
-		text = f.read()
-	tweets = twitterfeed(text)
+	topic = sys.argv[1]
+	tweets = searchTweets(topic)
 
 	for tweet in tweets:
 		if len(tweet.strip()) > 5:
@@ -47,9 +46,7 @@ def writeStory():
 	f.close()
 
 def main():
-	while(True):
-		writeStory()
-		time.sleep(10)
+	writeStory()
 
 if __name__ == "__main__":
     	main()
