@@ -10,6 +10,6 @@
 	$output = exec($command);
 
 	// Output "no suggestion" if no hint was found or output correct values
-	echo $output === "" ? "no suggestion" : $output;
+	echo $output === "" ? "no suggestion." : $output;
 
 ?> 
