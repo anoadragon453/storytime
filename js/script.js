@@ -40,9 +40,10 @@ function writestory()
 	var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
         	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			text = xmlhttp.responseText;
-			console.log("Got ".concat(text));
-			document.getElementById("text").innerHTML = text;
+			var returnText = xmlhttp.responseText;
+			text = returnText;
+			startTyping(returnText, delay, destination);
+
 			//end loading
 			$("#text").show();
 			$("#load_anim").hide();
