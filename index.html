@@ -8,23 +8,40 @@
     <title>StoryTime</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loading.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,300,300italic,100italic,100,400italic|EB+Garamond|Libre+Baskerville' rel='stylesheet' type='text/css'>
 </head>
 
 <body onload="init()">
     <div class="container-fluid" style="height:100%">
         <div class="row">
-                <img class="logo" src="assets/logo.png">
+            <img class="logo" src="assets/logo.png">
         </div>
+
+        <div id="load_anim" class="bookshelf_wrapper" style="display:none;">
+            <ul class="books_list">
+                <li class="book_item first"></li>
+                <li class="book_item second"></li>
+                <li class="book_item third"></li>
+                <li class="book_item fourth"></li>
+                <li class="book_item fifth"></li>
+                <li class="book_item sixth"></li>
+            </ul>
+            <div class="shelf"></div>
+        </div>
+
         <div class="row">
-            <div class="col-md-8 col-md-offset-2" style="height:100%">
-                <div><h2>Tell me about</h2></div>
-                <div><input type="text" placeholder="Hack Illinois" id="topic"></div>
+            <div class="col-md-8 col-md-offset-2" style="height:100%;">
+                <div>
+                    <h2>Tell me about</h2></div>
+                <div>
+                    <input type="text" placeholder="Hack Illinois" id="topic">
+                </div>
             </div>
         </div>
-        <div class="row" style="height:100%">
+        <div class="row" style="height:100%;">
             <div class="col-md-8 col-md-offset-2 maintext">
-                <p id="text"></p>
+                <p id="text" style="display:none;"></p>
             </div>
         </div>
     </div>
