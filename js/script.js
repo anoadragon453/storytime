@@ -30,13 +30,6 @@ function cycle()
 			$("#topic").attr("placeholder", placeholders[randomIndex]);
 		});	
 		$("#topic").fadeIn(0);
-
-		//$("#topic").delay(3000).attr("placeholder", placeholders[j%placeholders.length]); 
-
-		//i++; if(i == placeholders.length){i = 0;}	
-
-		//setTimeout(function(){}, 2000);
-
 	}
 	
 	
@@ -53,11 +46,12 @@ function writestory()
 			speak();
         	} else {
 			console.log("AJAX Error: ".concat(xmlhttp.status));
-
-	}
+		}
         };
-        xmlhttp.open("GET", "./backend/php/generate.php?q=" + document.getElementById('topic').value, true);
-        xmlhttp.send();
+
+	var service = "twitter";
+        xmlhttp.open("GET", "./backend/php/generate.php?q=" + document.getElementById('topic').value + "&s=" + service, true);
+       	xmlhttp.send();
 }
 
 function getText(url, callback)

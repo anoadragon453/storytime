@@ -1,4 +1,4 @@
-import markovify, tweepy, re, time, sys
+import markovify, tweepy, re, time, sys, praw
 
 def generateMarkov(text):
 	# Get raw text as string.
@@ -28,22 +28,37 @@ def searchTweets(textToSearch):
    return data
 
 def writeStory():
-	# Get topic to search
+	markovText = ""
 	text = ""
 	topic = sys.argv[1]
-	tweets = searchTweets(topic)
+	post_limit = 10
+	if sys.argv[2] == "twitter":
+		# Get topic to search
+		tweets = searchTweets(topic)
 
-	for tweet in tweets:
-		if len(tweet.strip()) > 5:
-			# Remove social crap from tweets (credit: https://stackoverflow.com/a/8377440)
-			stripped = lambda tweet: re.compile('\#').sub('', re.compile('RT @').sub('@', tweet, count=0).strip())
-			text += ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",stripped(tweet)).split()) + '. '
+		# Parse Tweets
+		for tweet in tweets:
+			if len(tweet.strip()) > 5:
+				# Remove social crap from tweets (credit: https://stackoverflow.com/a/8377440)
+				stripped = lambda tweet: re.compile('\#').sub('', re.compile('RT @').sub('@', tweet, count=0).strip())
+				text += ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)"," ",stripped(tweet)).split()) + '. '
 
-	# Write markov output to file
-	#f = open('./backend/markov_out.txt','w')
-	markovText = generateMarkov(text).rsplit(' ', 1)[0]
-	#f.write(markovText.rsplit(' ', 1)[0])
-	#f.close()
+		# Generate markov
+		markovText = generateMarkov(text).rsplit(' ', 1)[0]
+	elif sys.argv[2] == "reddit":
+		r = praw.Reddit(user_agent='storytime script: amorgan.me/storytime')	
+		r.login('storytime_bot', 'Jnw5v9pgbHW6qXXrNb24EJkGeE8KwZ', disable_warning=True)
+		submissions = r.get_subreddit(topic).get_new(limit=10)
+
+		# Get comments
+		for x in xrange(0,post_limit):
+			submission = next(submissions)
+			#comments = praw.helpers.flatten_tree(submission.comments)
+			# Parse comments
+			print (submission)
+			#for comment in submission.comments:
+				#markovText+=comment.body
+			#	print(comment.body)
 	print (markovText)
 
 def main():
