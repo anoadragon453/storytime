@@ -16,7 +16,7 @@ body {
     margin: 0px;
 }
 
-h1 {
+h2 {
     display: inline;
     text-align: center;
     font-family: 'Lato', serif;
@@ -100,11 +100,11 @@ input[type="text"] {
     background: #01A654;
     transition: border 0.3s;
     outline: none;
-    font-size: 40px;
+    font-size: 35px;
     font: 'Lato';
     font-weight: 100;
     color: #eee;
-    /*width: 200px;*/
+    width: 100%;
     text-overflow: visible;
 }
 
