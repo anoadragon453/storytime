@@ -1,4 +1,5 @@
 import markovify, tweepy, re, time, sys
+from  more_itertools import unique_everseen
 
 def generateMarkov(text):
 	# Get raw text as string.
@@ -48,9 +49,14 @@ def writeStory():
                             text = re.sub("( amp )"," & ",text)
                             text = re.sub("( re )","\'r ",text)
                             text = re.sub("( d )","\'d ",text)
+                            text = re.sub("(NoneNone)"," ",text)
+
 
 		# Generate markov
-		markovText = generateMarkov(text).rsplit(' ', 1)[0]
+		splitText = generateMarkov(text).rsplit(' ', 1)[0].split(".")
+                for tweet in list(unique_everseen(splitText)):
+                    markovText+=tweet+'. '
+
 	elif sys.argv[2] == "reddit":
 		r = praw.Reddit(user_agent='storytime script: amorgan.me/storytime')	
 		r.login('storytime_bot', 'Jnw5v9pgbHW6qXXrNb24EJkGeE8KwZ', disable_warning=True)
