@@ -58,8 +58,10 @@ function writestory()
         };
 
 	var service = "twitter";
-	if(document.getElementById('topic').value == "")
+	if(document.getElementById('topic').value == "") {
 		xmlhttp.open("GET", "./backend/php/generate.php?q=" + placeholders[randomIndex] + "&s=" + service, true);
+		document.getElementById('topic').value = placeholders[randomIndex];
+	}
     else
     	xmlhttp.open("GET", "./backend/php/generate.php?q=" + document.getElementById('topic').value + "&s=" + service, true);
     xmlhttp.send();
