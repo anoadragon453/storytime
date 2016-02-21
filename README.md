@@ -1,3 +1,3 @@
-Pulls tweets from Twitter an tells a story based of markov chain generation.
+Pulls tweets from Twitter and tells a story based off markov chain generation.
 
 For HackIllinois 2016
