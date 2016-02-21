@@ -1,0 +1,19 @@
+{
+  "name": "storytime",
+  "homepage": "https://github.com/anoadragon453/storytime",
+  "authors": [
+    "Andre Gou <andrejgou@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

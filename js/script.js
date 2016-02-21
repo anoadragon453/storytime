@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$('#topic').focus();
     $('#topic').bind('keypress', function(e) {
 		if(e.keyCode==13){
 			writestory();
@@ -10,10 +11,12 @@ $(document).ready(function(){
 
 function init()
 {
+
 	cycle();
 }
 
 var placeholders = ["Shia LaBeouf", "Syria", "ViaSat", "Jeb Bush", "Ferrari", "Eastbay", "Yeezys" ,"Adidas", "Lakers", "Harper Lee", "Kesha", "Footlocker"];
+var textsource = "https://amorgan.me/storytime/backend/markov_out.txt";
 var text = "";
 
 function cycle()
