@@ -1,3 +1,7 @@
+var delay=50;
+var currentChar=1;
+var destination="text";
+
 $(document).ready(function(){
 	// $('#topic').focus();
     $('#topic').bind('keypress', function(e) {
@@ -7,11 +11,8 @@ $(document).ready(function(){
 	});
 });
 
-
-
 function init()
 {
-
 	cycle();
 }
 
@@ -21,29 +22,23 @@ var text = "";
 
 function cycle()
 {
-	
-	for(var j = 0; j < 10000; j++)
-	{
+	$("#topic").delay(5000);
+	randomIndex = Math.floor(Math.random()*placeholders.length);
+	$("#topic").attr("placeholder", placeholders[randomIndex]);
 
-		$("#topic").delay(5000).fadeOut(0, function(){
-			randomIndex = Math.floor(Math.random()*placeholders.length);
-			console.log(randomIndex);
-			$("#topic").attr("placeholder", placeholders[randomIndex]);
-		});	
-		$("#topic").fadeIn(0);
-	}
-	
-	
-}	
+	$("#topic").fadeIn("slow", function(){
+		$("#topic").fadeOut("slow", cycle())
+	});
+}
 
 function writestory()
 {
 	var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
         	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			text = xmlhttp.responseText;
-			console.log("Got ".concat(text));
-			document.getElementById("text").innerHTML = text;
+			var returnText = xmlhttp.responseText;
+			text = returnText;
+			startTyping(returnText, delay, destination);
 			speak();
         	} else {
 			console.log("AJAX Error: ".concat(xmlhttp.status));
@@ -60,6 +55,37 @@ function writestory()
     xmlhttp.send();
 }
 
+function type()
+{
+  if (document.getElementById)
+  {
+    var dest=document.getElementById(destination);
+    if (dest)
+    {
+      dest.innerHTML=text.substr(0, currentChar);
+      currentChar++
+      if (currentChar>text.length)
+      {
+        currentChar=1;
+        setTimeout("type()", 5000);
+      }
+      else
+      {
+        setTimeout("type()", delay);
+      }
+    }
+  }
+}
+
+function startTyping(textParam, delayParam, destinationParam)
+{
+  text=textParam;
+  delay=delayParam;
+  currentChar=1;
+  destination=destinationParam;
+  type();
+}
+
 function getText(url, callback)
 {
 	var xhttp = new XMLHttpRequest();
@@ -73,8 +99,6 @@ function getText(url, callback)
 	};
 	xhttp.open("GET", url, true);
 	xhttp.send();
-
-	
 }
 
 function speak()
