@@ -1,4 +1,4 @@
-import markovify, tweepy, re, time, sys, praw
+import markovify, tweepy, re, time, sys
 
 def generateMarkov(text):
 	# Get raw text as string.
