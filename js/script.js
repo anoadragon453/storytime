@@ -1,6 +1,8 @@
-var delay=50;
+var delay=30;
 var currentChar=1;
 var destination="text";
+var stopTyping = false;
+var isTyping = false;
 
 $(document).ready(function(){
 	// $('#topic').focus();
@@ -92,24 +94,22 @@ function writestory()
 
 function type()
 {
-  if (document.getElementById)
-  {
-    var dest=document.getElementById(destination);
-    if (dest)
-    {
-      dest.innerHTML=text.substr(0, currentChar);
-      currentChar++
-      if (currentChar>text.length)
+      if (document.getElementById)
       {
-        currentChar=1;
-        setTimeout("type()", 5000);
-      }
-      else
-      {
-        setTimeout("type()", delay);
-      }
+               var dest=document.getElementById(destination);
+               if (dest)
+               {
+                    dest.innerHTML=text.substr(0, currentChar);
+                    //dest.innerHTML+=text[currentChar-1];
+                    currentChar++;
+                    if (currentChar>text.length || stopTyping)
+                    {
+                        return;
+                    }
+                    else 
+                        setTimeout("type()", delay);
+               }
     }
-  }
 }
 
 function startTyping(textParam, delayParam, destinationParam)
@@ -118,7 +118,20 @@ function startTyping(textParam, delayParam, destinationParam)
   delay=delayParam;
   currentChar=1;
   destination=destinationParam;
-  type();
+  if (isTyping == true) {
+      stopTyping = true;
+      setTimeout("delayedType()", 100); 
+  }
+  else {
+      stopTyping = false;
+      isTyping = true;
+      type();
+  }
+}
+
+function delayedType() {
+    stopTyping = false;
+    type();
 }
 
 function getText(url, callback)
@@ -127,7 +140,6 @@ function getText(url, callback)
 	xhttp.onreadystatechange = function() {
 	    if (xhttp.readyState == 4 && xhttp.status == 200) {
 	       text = xhttp.responseText;
-	       //$("#text").html(text);
 
 	       callback();
 	    }
